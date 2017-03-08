@@ -1,0 +1,16 @@
+--- 
+- 
+  hosts: web
+- 
+  tasks: 
+    - 
+      apt: "pkg=nginx state=installed update_cache=true"
+      name: "Installs nginx web server"
+      notify: 
+        - "start nginx"
+- 
+  handlers: 
+    - 
+      name: "start nginx"
+      service: "name=nginx state=started"
+
