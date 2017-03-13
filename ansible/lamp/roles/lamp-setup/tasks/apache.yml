@@ -1,0 +1,24 @@
+- name: Install Apache
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+     - apache2
+     - apache2-utils
+- name: Remove the default file in nginx config
+  file: path=/etc/apache2/sites-enabled/default state=absent
+
+- name: Copy Nginx config file
+  template: src=apache2.conf.j2 dest=/etc/apache2/sites-available/apache.com.conf
+
+- name: enable site
+  file: src=/etc/apache2/sites-available/apache.com.conf
+        dest=/etc/apache2/sites-enabled/apache.com.conf
+        state=link
+
+- name: Start apache2 service
+  service: name=apache2 state=started
+
+  notify: 
+  -  restart apache2
+
+
+
