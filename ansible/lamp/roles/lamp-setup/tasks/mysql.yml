@@ -8,21 +8,21 @@
      - libmysqlclient-dev
 
  - name: Update MySQL root password for all root accounts
-   mysql_user: name=root host={{ item }} password={{ mysql_root_pass }} state=present
+   mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
    with_items:
-     - "{{ ansible_hostname }}"
-     - 192.168.33.10
-     - ::1
+#     - "{{ ansible_hostname }}"
+     - 192.168.33.11
+#     - ::1
      - vagrant
 
  - name: Copy the root credentials as my.cnf file
-   template: src=my.cnf dest=/my.cnf mode=0600
+   template: src=my.cnf dest=/etc/my.cnf mode=0600
 
  - name: Ensure Anonymous user(s) are not in the database
    mysql_user: name='' host={{ item }} state=absent
    with_items:
      - vagrant
-     - "{{ ansible_hostname }}"
+#     - "{{ ansible_hostname }}"
 
  - name: Remove the test database
    mysql_db: name=test state=absent

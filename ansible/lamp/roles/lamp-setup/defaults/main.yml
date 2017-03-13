@@ -58,11 +58,11 @@ mysql_innodb_log_buffer_size: "8M"
 mysql_innodb_flush_log_at_trx_commit: "1"
 mysql_innodb_lock_wait_timeout: "50"
 
-mysql_users: []
-   - name: example
+mysql_users: 
+     name: example
      host: 192.168.33.10
      password: secret
-     priv: *.*:USAGE
+#     priv: *.*:USAGE
 
 
 # These settings require MySQL > 5.5.

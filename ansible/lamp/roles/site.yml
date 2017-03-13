@@ -3,5 +3,5 @@
 - hosts: web-server
   remote_user: root
   roles:
-    - { role: "/etc/ansible/lamp/roles/lamp-setup" }
+    - { role: "/home/vagrant/avani-anisble/Assignment/ansible/lamp/roles/lamp-setup" }
 
