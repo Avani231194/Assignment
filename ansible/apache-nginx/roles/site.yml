@@ -1,0 +1,9 @@
+---
+
+- hosts: apache-server
+  become: true
+  become_user: root
+  remote_user: root
+  roles:
+    - { role: "/home/vagrant/ansible/apache-nginx/roles/client-apache" }
+
